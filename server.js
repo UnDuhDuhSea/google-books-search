@@ -1,33 +1,24 @@
-require("dotenv").config();
 const express = require("express");
-const router = require("./router");
-const connectDb = require("./config/connectDb");
-const session = require("./config/session");
-const errorMiddleware = require("./util/errorMiddleware");
+const db = require("./models");
 
+const routes = require("./routes");
+const app = express();
 const PORT = process.env.PORT || 3001;
 
-(async () => {
-  try {
-    await connectDb();
-    console.log(`🔌 MongoDB Connected`);
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
 
-    const app = express();
+// Connect to the Mongo DB
+db.connect();
 
-    // trust proxy required for using secure cookies on Heroku
-    app.set("trust proxy", 1);
-
-    app.use(
-      express.urlencoded({ extended: true }),
-      express.json(),
-      session,
-      router,
-      errorMiddleware
-    );
-    app.listen(PORT, () => {
-      console.log(`🌎 ==> Server listening on port ${PORT}!`);
-    });
-  } catch (error) {
-    console.error(error);
-  }
-})();
+// Start the API server
+app.listen(PORT, function () {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});

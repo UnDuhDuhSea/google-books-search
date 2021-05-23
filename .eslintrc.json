@@ -11,9 +11,9 @@
   },
   "ignorePatterns": ["node_modules"],
   "rules": {
-    "no-var": "error",
-    "prefer-const": "error",
-    "prefer-arrow-callback": "error",
-    "prefer-destructuring": "error"
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "prefer-arrow-callback": "warn",
+    "prefer-destructuring": "warn"
   }
 }
