@@ -1,5 +1,5 @@
 function SavedPage() {
-  return <h1>Saved Page</h1>;
+  return <div>SavedPage</div>;
 }
 
 export default SavedPage;
