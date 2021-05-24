@@ -1,13 +1,14 @@
 import BookCard from "../BookCard";
+import Section from "../Section";
+import { items as books } from "../../fakeGoogleBooks.json";
 
 function BookList() {
   return (
-    <div>
-      <h2 style={{ fontSize: "1.2rem" }}>Results</h2>
-      <BookCard />
-      <BookCard />
-      <BookCard />
-    </div>
+    <Section title="Results">
+      {books.map((book) => (
+        <BookCard key={book.id} book={book} />
+      ))}
+    </Section>
   );
 }
 
