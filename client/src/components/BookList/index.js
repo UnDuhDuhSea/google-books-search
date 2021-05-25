@@ -2,7 +2,7 @@ import BookCard from "../BookCard";
 import Section from "../Section";
 import { items as books } from "../../fakeGoogleBooks.json";
 
-function BookList() {
+function BookList({ books }) {
   return (
     <Section title="Results">
       {books.map((book) => (

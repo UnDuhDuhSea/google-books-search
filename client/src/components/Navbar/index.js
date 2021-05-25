@@ -19,7 +19,7 @@ function Navbar() {
               <NavLink
                 className="nav-link"
                 to="/saved"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-disabled="true"
               >
                 Saved
